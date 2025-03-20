@@ -2,27 +2,49 @@ package backend.profolio.domain;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+//Entity määrittää, että relaatiotietokannassa on Project-niminen taulu
+
+@Entity
 public class Project {
 
-    String name;
-    LocalDate startDate;
-    LocalDate endDate;
-   
-    public Project(String name, LocalDate startDate, LocalDate endDate) {
-        this.name = name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String projectName;
+    private LocalDate startDate;
+    private LocalDate endDate;
+
+    public Project () {
+
+    }
+
+    public Project(String projectName, LocalDate startDate, LocalDate endDate) {
+        super();
+        this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Project() {
+    public Long getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public LocalDate getStartDate() {
@@ -43,8 +65,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + "]";
-    }
-       
+        return "Project [id=" + id + ", projectName=" + projectName + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+    }       
 
 }
