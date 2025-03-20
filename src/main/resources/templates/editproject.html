@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit Project</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <form action="#" th:action="@{/save}" th:object="${project}" th:method="post">
+        
+        <input type="hidden" th:field="*{id}" />
+        
+        <div>
+            <h1>Edit project</h1>
+        </div>
+
+        <div>
+            <h1>Add new project</h1>
+        </div>
+
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" placeholder="name" th:field="*{name}" />
+        </div>
+
+        <div>
+            <label for="startDate">Start date:</label>
+            <input type="date" th:field="*{startDate}" />
+        </div>
+
+        <div>
+            <label for="endDate">End date:</label>
+            <input type="date" th:field="*{endDate}" />
+        </div>
+
+        <div style="clear: both; display: block; height: 10px;"></div>
+
+        
+        <!--mieti jääkö buttonit samaan diviin vai omiinsa-->
+        <div>
+            <button type="submit">Save changes</button>
+        </div>
+
+        <div>
+            <button onclick="window.location.href='/projectlist';">Return</button>
+        </div>
+
+    </form>
+
+</body>
+
+</html>

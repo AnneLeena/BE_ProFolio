@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <title>Workfolio</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+
+<body>
+
+    <h1>Projects</h1>
+
+    <table class="table table-striped">
+
+        <tr>
+            <th>Name</th>
+            <th>Start date</th>
+            <th>End date</th>
+        </tr>
+
+        <tr th:each="project : ${projects}">
+            <td th:text="${project.name}"></td>
+            <td th:text="${project.startDate}"></td>
+            <td th:text="${project.endDate}"></td>
+
+            <td><button class="btn btn-danger">Delete</button></td>
+            <td><button class="btn btn-secondary">Edit</button></td>
+
+        </tr>
+
+    </table>
+
+    <!--<form th:action="@{/add}" method="get">
+        <input type="submit" value="Add new project" />
+    </form>-->
+
+    <!--koska add vain ohjaa lomakkeella, sen voi tehdä vain linkkibuttonina-->
+    <button class="btn btn-primary" onclick="window.location.href='/add'">Add new project</button>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Log out" />
+    </form>
+
+
+</body>
+
+</html>

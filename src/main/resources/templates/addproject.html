@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add New Project</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    
+    <form action="#" th:action="@{/save}" th:object="${project}" th:method="post">
+
+        <div>
+            <h1>Add new project</h1>
+        </div>
+
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" placeholder="name" th:field="*{name}" />
+        </div>
+
+        <div>
+            <label for="startDate">Start date:</label>
+            <input type="date" th:field="*{startDate}" />
+        </div>
+
+        <div>
+            <label for="endDate">End date:</label>
+            <input type="date" th:field="*{endDate}" />
+        </div>
+
+        <div style="clear: both; display: block; height: 10px;"></div>
+
+        <!-- mieti jääkö buttonit samaan diviin vai erotetaanko-->
+
+        <div>
+            <button type="submit" class="btn btn-success">Save Project</button>
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/projectlist'">Back to Project List</button>
+        </div>
+
+    </form>
+
+</body>
+
+</html>
