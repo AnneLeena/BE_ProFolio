@@ -4,6 +4,7 @@
 <head>
     <title>Add New Project</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 
 <body>
@@ -17,17 +18,28 @@
         <div>
             <label for="projectName">Name:</label>
             <input type="text" placeholder="project name" th:field="*{projectName}" />
+            <div th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}">Error</div>
         </div>
 
         <div>
             <label for="startDate">Start date:</label>
             <input type="date" th:field="*{startDate}" />
+            <div th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Error</div>
         </div>
 
         <div>
             <label for="endDate">End date:</label>
             <input type="date" th:field="*{endDate}" />
+            <div th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">Error</div>
         </div>
+
+        <div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="statuslist">Status</label>
+			 <select id="statuslist" th:field="*{status}" class="form-control" style="width: 30%; height: 40px;">
+       			<option th:each="status: ${statuses}" th:value="${status.statusId}" th:text="${status.statusName}"></option>
+    		</select>
+
+
 
         <div style="clear: both; display: block; height: 10px;"></div>
 

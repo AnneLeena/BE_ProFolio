@@ -17,12 +17,15 @@
             <th>Project name</th>
             <th>Start date</th>
             <th>End date</th>
+            <th>Status</th>
         </tr>
 
         <tr th:each="project : ${projects}">
             <td th:text="${project.projectName}"></td>
             <td th:text="${project.startDate}"></td>
             <td th:text="${project.endDate}"></td>
+            <td th:text="${project.status.statusName}"></td>
+
 
             <td><a th:href="@{/delete/{id}(id=${project.id})}"><button class="btn btn-danger">Delete</button></a></td>
             <td><a th:href="@{/edit/{id}(id=${project.id})}"><button class="btn btn-secondary">Edit</button></a></td>
@@ -39,7 +42,7 @@
     <button class="btn btn-primary" onclick="window.location.href='/add'">Add new project</button>
 
     <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Log out" />
+        <input type="submit" value="Log out" class="btn btn-secondary" />
     </form>
 
 
