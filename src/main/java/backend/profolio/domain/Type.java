@@ -3,6 +3,8 @@ package backend.profolio.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class Type {
     private String typeName;
 
     @ManyToMany ( mappedBy = "types")
+    @JsonIgnore
     private Set<Project> projects = new HashSet<>();
 
     public Type() {
