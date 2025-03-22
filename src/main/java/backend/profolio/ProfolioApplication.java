@@ -13,18 +13,21 @@ import backend.profolio.domain.Project;
 import backend.profolio.domain.ProjectRepository;
 import backend.profolio.domain.Status;
 import backend.profolio.domain.StatusRepository;
+import backend.profolio.domain.Type;
+import backend.profolio.domain.TypeRepository;
 
 @SpringBootApplication
 public class ProfolioApplication {
 
+    
 	private static final Logger log = LoggerFactory.getLogger(ProfolioApplication.class);
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		SpringApplication.run(ProfolioApplication.class, args);
 	}
 
 	@Bean
-	public CommandLineRunner profolio(ProjectRepository prepository, StatusRepository srepository) {
+	public CommandLineRunner profolio(ProjectRepository prepository, StatusRepository srepository, TypeRepository trepository) {
 		return (args) -> {
 
 			if (srepository.count() == 0) {
@@ -41,15 +44,31 @@ public class ProfolioApplication {
 				srepository.save(status3);
 				srepository.save(status4);
 				srepository.save(status5);
+			
+			if (trepository.count() == 0) {
+
+				Type type1 = new Type("Application");
+				Type type2 = new Type("Software");
+				Type type3 = new Type("Database");
+				Type type4 = new Type("Web development");
+
+				trepository.save(type1);
+				trepository.save(type2);
+				trepository.save(type3);
+				trepository.save(type4);
+					
 
 				if (prepository.count() == 0) {
 					log.info("Save projects if empty");
-					prepository.save(new Project("Projekti A", LocalDate.of(2024, 10, 26), LocalDate.of(2025, 5, 7), status2));
-					prepository.save(new Project("Projekti C", LocalDate.of(2025, 1, 13), LocalDate.of(2026, 7, 31), status4));
-					prepository.save(new Project("Projekti 123", LocalDate.of(2023, 4, 3), LocalDate.of(2024, 10, 2), status3));
-					prepository.save(new Project("Projekti F", LocalDate.of(2025, 10, 26), LocalDate.of(2027, 8, 30), status1));
+
+					prepository.save(new Project("Projekti 123", LocalDate.of(2023, 4, 3), LocalDate.of(2024, 10, 2), status3, type1, type2));
+					prepository.save(new Project("Projekti A", LocalDate.of(2024, 10, 26), LocalDate.of(2025, 5, 7), status2, type4, type1));
+					prepository.save(new Project("Projekti C", LocalDate.of(2025, 1, 13), LocalDate.of(2026, 7, 31), status4, type2));
+					prepository.save(new Project("Projekti testi", LocalDate.of(2023, 4, 3), LocalDate.of(2024, 10, 2), status3, type3, type1, type4));
+					prepository.save(new Project("Projekti F", LocalDate.of(2025, 10, 26), LocalDate.of(2027, 8, 30), status1, type2));
 				}
-			}
+			
+			}}
 			
 				
 			//pRepository.save(new Project("Project A", LocalDate.of(2024, 10, 5), LocalDate.of(2025, 04, 30)));

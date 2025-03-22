@@ -1,12 +1,19 @@
 package backend.profolio.domain;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
@@ -38,18 +45,30 @@ public class Project {
     @JoinColumn(name = "statusId")
     private Status status;
 
+    @ManyToMany (fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "projectType", // Taulun nimi, jossa yhdistetään projektit ja tyypit
+        joinColumns = @JoinColumn(name = "id"),
+        inverseJoinColumns = @JoinColumn(name = "typeId")
+    )
+    private Set<Type> types = new HashSet<>(); // Voimme liittää useamman tyypin
+
+
     public Project() {
 
     }
 
     public Project(
             @NotBlank(message = "Project name cannot be blank") @Size(min = 2, max = 40, message = "Project name must be between 2 and 40 characters") @Pattern(regexp = "^[A-Za-z0-9 _-]+$", message = "Project name must contain only alphanumeric characters and/or (space)/-/_") String projectName,
-            LocalDate startDate, LocalDate endDate, Status status) {
+            LocalDate startDate, LocalDate endDate, Status status, Type... types) {
         super();
         this.projectName = projectName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
+        this.types = new HashSet<>(Arrays.asList(types));
+        //this.types.addAll(Arrays.asList(types));  // Lisää kaikki annetut tyypit
+   
     }
 
     
@@ -100,11 +119,30 @@ public class Project {
         this.status = status;
     }
 
+    public Set<Type> getTypes() {
+        return types;
+    }
+
+    public void setTypes(Set<Type> types) {
+        this.types = types;
+    }
+
     @Override
     public String toString() {
         return "Project [id=" + id + ", projectName=" + projectName + ", startDate=" + startDate + ", endDate="
-                + endDate + ", status=" + this.getStatus() + "]";
+                + endDate + ", status=" + this.getStatus() + ", types=" + this.getTypes() + "]";
     }
 
 
-}
+
+
+    
+   // @Override
+    //public String toString() {
+      //  return "Project [id=" + id + ", projectName=" + projectName + ", startDate=" + startDate + ", endDate="
+        //        + endDate + ", status=" + this.getStatus() + "]";
+    }
+
+
+
+

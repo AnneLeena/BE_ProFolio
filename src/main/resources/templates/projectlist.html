@@ -18,6 +18,8 @@
             <th>Start date</th>
             <th>End date</th>
             <th>Status</th>
+            <th>Type(s)</th>
+
         </tr>
 
         <tr th:each="project : ${projects}">
@@ -25,6 +27,18 @@
             <td th:text="${project.startDate}"></td>
             <td th:text="${project.endDate}"></td>
             <td th:text="${project.status.statusName}"></td>
+            
+            <!--<td>
+                <span th:each="type : ${project.types}" th:text="${type.typeName}"></span>
+            </td>-->
+
+            <td>
+                <span th:each="type, iterStat : ${project.types}" 
+                      th:text="${iterStat.index != 0 ? ' | ' : ''} + ${type.typeName}"></span>
+            </td>
+        
+
+            
 
 
             <td><a th:href="@{/delete/{id}(id=${project.id})}"><button class="btn btn-danger">Delete</button></a></td>

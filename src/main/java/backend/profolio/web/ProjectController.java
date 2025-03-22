@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import backend.profolio.domain.Project;
 import backend.profolio.domain.ProjectRepository;
 import backend.profolio.domain.StatusRepository;
+import backend.profolio.domain.TypeRepository;
 import jakarta.validation.Valid;
 
 @Controller
@@ -29,6 +30,9 @@ public class ProjectController {
         @Autowired
         private StatusRepository srepository;
 
+        @Autowired
+        private TypeRepository trepository;
+
 
     @GetMapping({ "/", "/projectlist" })
     public String projectlist(Model model) {
@@ -40,6 +44,7 @@ public class ProjectController {
     public String addProject(Model model) {
         model.addAttribute("project", new Project());
         model.addAttribute("statuses", srepository.findAll());
+        model.addAttribute("types", trepository.findAll());
         return "addproject";
     }
 
@@ -49,6 +54,7 @@ public class ProjectController {
             System.out.println("Errors errors " + project);
             model.addAttribute("project", project);
             model.addAttribute("statuses", srepository.findAll());
+            model.addAttribute("types", trepository.findAll());
 
             return "editproject";
         }
@@ -62,6 +68,7 @@ public class ProjectController {
         Project project = prepository.findById(projectId).orElse(null);
         model.addAttribute("project", project);
         model.addAttribute("statuses", srepository.findAll());
+        model.addAttribute("types", trepository.findAll());
         return "editproject";
     }
 

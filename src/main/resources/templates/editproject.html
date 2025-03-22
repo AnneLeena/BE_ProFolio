@@ -41,6 +41,13 @@
        			<option th:each="status: ${statuses}" th:value="${status.statusId}" th:text="${status.statusName}"></option>
     		</select>
 
+            <div>
+                <label>Project Types:</label>
+                <div th:each="type : ${types}">
+                    <input type="checkbox" th:field="*{types}" th:value="${type.typeId}" th:text="${type.typeName}" /> 
+                </div>
+            </div>
+
         <div style="clear: both; display: block; height: 10px;"></div>
 
         
