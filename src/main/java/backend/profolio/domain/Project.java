@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -36,9 +36,13 @@ public class Project {
     private String projectName;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //jos json data/rest api käytössä niin tämä tarvitaan @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //jos json data/rest api käytössä niin tämä tarvitaan @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
     @ManyToOne

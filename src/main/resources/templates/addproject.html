@@ -4,62 +4,75 @@
 <head>
     <title>Add New Project</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
 </head>
 
 <body>
 
+    <div class="navbar">
+        <h1>ProFOLIO</h1>
+        <a href="/">PROJECTS</a> <!--mieti onko tarpeellinen-->
+        <a href="/add">TÄHÄN LOG OUTTI</a> <!--vaihda tähän logout-->
+
+    </div>
+
     <form action="#" th:action="@{/save}" th:object="${project}" th:method="post">
-
         <div>
-            <h1>Add new project</h1>
+            <h3>Add new project</h3>
         </div>
-
-        <div>
-            <label for="projectName">Name:</label>
-            <input type="text" placeholder="project name" th:field="*{projectName}" />
-            <div th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}">Error</div>
-        </div>
-
-        <div>
-            <label for="startDate">Start date:</label>
-            <input type="date" th:field="*{startDate}" />
-            <div th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Error</div>
-        </div>
-
-        <div>
-            <label for="endDate">End date:</label>
-            <input type="date" th:field="*{endDate}" />
-            <div th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">Error</div>
-        </div>
-
-        <div style="clear: both; display: block; height: 10px;"></div>
-        <label for="statuslist">Status</label>
-        <select id="statuslist" th:field="*{status}" class="form-control" style="width: 30%; height: 40px;">
-            <option th:each="status: ${statuses}" th:value="${status.statusId}" th:text="${status.statusName}"></option>
-        </select>
-
-        <div>
-            <label>Project Types (max 2 choises):</label>
-            <div th:each="type : ${types}">
-                <input type="checkbox" th:field="*{types}" th:value="${type.typeId}" th:text="${type.typeName}" /> 
+    
+        <div class="row">
+            <!-- Vasemman sarakkeen kentät -->
+            <div class="col-md-6">
+                <div>
+                    <label for="projectName">Name:</label>
+                    <input type="text" placeholder="Project name" th:field="*{projectName}" class="form-control" />
+                    <div th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}">Error</div>
+                </div>
+    
+                <div>
+                    <label for="startDate">Start date:</label>
+                    <input type="date" th:field="*{startDate}" class="form-control" />
+                    <div th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}">Error</div>
+                </div>
+    
+                <div>
+                    <label for="endDate">End date:</label>
+                    <input type="date" th:field="*{endDate}" class="form-control" />
+                    <div th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}">Error</div>
+                </div>
+    
+                <div>
+                    <label for="statuslist">Status:</label>
+                    <select id="statuslist" th:field="*{status}" class="form-control">
+                        <option th:each="status : ${statuses}" th:value="${status.statusId}" th:text="${status.statusName}"></option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Oikean sarakkeen kentät: Tyyppivalinnat ja napit -->
+            <div class="col-md-6">
+                <div>
+                    <label>Project Types (max 2 choices):</label>
+                    <div th:each="type : ${types}">
+                        
+                            <input type="checkbox" th:field="*{types}" th:value="${type.typeId}" />
+                            <span th:text="${type.typeName}"></span>
+                        
+                    </div>
+                </div>
+    
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-success">Save New Project</button>
+                </div>
+                <div class="mt-3">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='/projectlist'">Return</button>
+                </div>
             </div>
         </div>
-
-        <div style="clear: both; display: block; height: 10px;"></div>
-
-        <!-- mieti jääkö buttonit samaan diviin vai erotetaanko-->
-
-        <div>
-            <button type="submit" class="btn btn-success">Save Project</button>
-        </div>
-
-        <div>
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='/projectlist'">Back to
-                Project List</button>
-        </div>
-
     </form>
+    
 
 </body>
 

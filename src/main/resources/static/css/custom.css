@@ -1,0 +1,126 @@
+body {
+   
+    background-color: #f8f8fa; /* Vaalea taustaväri sivulle */
+}
+
+.container {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+table {
+    width: 80%; /* Taulukko vie koko leveys */
+    margin-top: 20px;
+   
+}
+
+table.table-striped th, table.table-striped td {
+    padding: 8px; /* Pienennetään taulukon solujen paddingia */
+    
+}
+
+/* Header-palkin tyylit */
+.navbar {
+    background-color: #9071e6; /* Sininen taustaväri headerille */
+    padding: 10px;
+
+}
+
+.navbar a {
+    color: white; /* Muuttaa linkkien värin valkoiseksi */
+    margin: 15px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline; /* Lisää korostus linkin hover-tilassa */
+}
+
+
+
+/*addprojectin muotoilut*/
+
+form {
+    max-width: 600px; /* Asetetaan lomakkeen maksimileveys */
+    margin: 0 auto; /* Keskitetään lomake */
+    padding: 20px;
+    background-color: #f8f9fa; /* Vaaleanharmaa taustaväri */
+    border-radius: 8px; /* Pehmennetyt kulmat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hieno varjo */
+}
+
+/* Lomakkeen otsikon tyylitys */
+form h3 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* Label- ja input-elementtien väli */
+form div {
+    margin-bottom: 10px;
+}
+
+/* Labelin tyylit */
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input- ja select-elementtien tyylit */
+form input[type="text"],
+form input[type="date"],
+form select {
+    width: 100%; /* Tekstikenttä ja valinta täyttävät koko rivin */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+
+/* Checkboxit - muotoilu */
+form input[type="checkbox"] {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Nappien tyylit */
+form button {
+    width: 100%; /* Nappit vievät koko rivin */
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Erottelu nappien välillä */
+form div button {
+    margin-top: 10px;
+}
+
+/* Yksittäiset napit: */
+form .btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+form .btn-success:hover {
+    background-color: #218838;
+}
+
+form .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+form .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+div.field-errors {
+    color: red;               /* Tekstin väri punaiseksi */
+    font-size: 14px;          /* Fonttikoko */
+    margin-top: 5px;          /* Väli virheilmoituksen ja kentän väliin */
+    font-weight: bold;        /* Tekstin lihavointi, että virheet erottuvat selkeämmin */
+}

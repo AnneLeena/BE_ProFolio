@@ -3,7 +3,6 @@ package backend.profolio.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -60,7 +59,5 @@ public class Type {
     public String toString() {
         return "Type [typeId=" + typeId + ", typeName=" + typeName + "]";
     }
-
-    
     
 }

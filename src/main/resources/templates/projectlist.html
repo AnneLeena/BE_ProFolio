@@ -2,64 +2,71 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
-    <title>Workfolio</title>
+    <title>ProFolio</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 
 <body>
 
-    <h1>Projects</h1>
+    <div class="navbar">
+      
+        <h1>ProFOLIO</h1>
+        <a href="/projects">Projects</a>
+        <a href="/add">Add new project</a> <!--vaihda tähän logout-->
 
-    <table class="table table-striped">
+    </div>
 
-        <tr>
-            <th>Project name</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>Status</th>
-            <th>Type(s)</th>
-
-        </tr>
-
-        <tr th:each="project : ${projects}">
-            <td th:text="${project.projectName}"></td>
-            <td th:text="${project.startDate}"></td>
-            <td th:text="${project.endDate}"></td>
-            <td th:text="${project.status.statusName}"></td>
-            
-            <!--<td>
-                <span th:each="type : ${project.types}" th:text="${type.typeName}"></span>
-            </td>-->
-
-            <td>
-                <span th:each="type, iterStat : ${project.types}" 
-                      th:text="${iterStat.index != 0 ? ' | ' : ''} + ${type.typeName}"></span>
-            </td>
+    <div class="container">
         
 
-            
+
+        <table class="table table-striped">
+
+            <thread>
+                <tr>
+                    <th>Project name</th>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>Status</th>
+                    <th>Type(s)</th>
+                    <th> </th>
+                    <th> </th>
+
+                </tr>
+            </thread>
+            <tbody>
+
+                <tr th:each="project : ${projects}">
+                    <td th:text="${project.projectName}"></td>
+                    <td th:text="${project.startDate}"></td>
+                    <td th:text="${project.endDate}"></td>
+                    <td th:text="${project.status.statusName}"></td>
+
+                    <td>
+                        <span th:each="type, iterStat : ${project.types}"
+                            th:text="${iterStat.index != 0 ? ' | ' : ''} + ${type.typeName}"></span>
+                    </td>
+
+                    <td><a th:href="@{/edit/{id}(id=${project.id})}"><button class="btn btn-primary">Edit</button></a>
+                    </td>
+                    <td><a th:href="@{/delete/{id}(id=${project.id})}"><button
+                                class="btn btn-danger">Delete</button></a>
+                    </td>
 
 
-            <td><a th:href="@{/delete/{id}(id=${project.id})}"><button class="btn btn-danger">Delete</button></a></td>
-            <td><a th:href="@{/edit/{id}(id=${project.id})}"><button class="btn btn-secondary">Edit</button></a></td>
-
-        </tr>
-
-    </table>
-
-    <!--<form th:action="@{/add}" method="get">
-        <input type="submit" value="Add new project" />
-    </form>-->
-
-    <!--koska add vain ohjaa lomakkeella, sen voi tehdä vain linkkibuttonina-->
-    <button class="btn btn-primary" onclick="window.location.href='/add'">Add new project</button>
-
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Log out" class="btn btn-secondary" />
-    </form>
+                </tr>
+            </tbody>
+        </table>
 
 
+        <!--koska add vain ohjaa lomakkeella, sen voi tehdä vain linkkibuttonina-->
+        <button class="btn btn-primary" onclick="window.location.href='/add'">Add new project</button>
+
+        <button class="btn btn-secondary" onclick="window.location.href='/logout';">Log out</button>
+
+    </div>
 </body>
 
 </html>
