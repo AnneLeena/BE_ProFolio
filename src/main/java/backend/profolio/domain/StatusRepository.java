@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface StatusRepository extends CrudRepository <Status, Long> {
 
-     List <Status> findByStatusName (String statusName);
+     List <Status> findByStatusNameIgnoreCase (String statusName);
 
    
     

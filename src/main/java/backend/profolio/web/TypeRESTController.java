@@ -67,6 +67,6 @@ public class TypeRESTController {
     @GetMapping("/types/name/{typeName}")
     List<Type> getTypeByName(@PathVariable String typeName) {
         log.info("find types, typeName = " + typeName);
-        return trepository.findByTypeName(typeName); // assuming this method exists in TypeRepository
+        return trepository.findByTypeNameIgnoreCase(typeName);
     }
 }

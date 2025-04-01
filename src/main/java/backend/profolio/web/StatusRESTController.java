@@ -72,7 +72,7 @@ public class StatusRESTController {
     @GetMapping("/statuses/name/{statusName}")
     List<Status> getStatusByName(@PathVariable String statusName) {
         log.info("find statuses, statusName = " + statusName);
-        return srepository.findByStatusName (statusName);
+        return srepository.findByStatusNameIgnoreCase(statusName);
     }
 
 }

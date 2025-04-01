@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import backend.profolio.domain.AppUser;
+import backend.profolio.domain.AppUserRepository;
 import backend.profolio.domain.Project;
 import backend.profolio.domain.ProjectRepository;
 import backend.profolio.domain.Status;
@@ -27,7 +29,7 @@ public class ProfolioApplication {
 	}
 
 	@Bean
-	public CommandLineRunner profolio(ProjectRepository prepository, StatusRepository srepository, TypeRepository trepository) {
+	public CommandLineRunner profolio(ProjectRepository prepository, StatusRepository srepository, TypeRepository trepository, AppUserRepository urepository) {
 		return (args) -> {
 
 			if (srepository.count() == 0) {
@@ -70,7 +72,14 @@ public class ProfolioApplication {
 			
 			}}
 			
-				
+			if (urepository.count() == 0) {
+				log.info("Save users if empty");
+				urepository.save(
+						new AppUser("user", "$2a$10$kmHBHgBP6kVMZ.K9Pq3tG.u5ExbcH/RAKPzU5SiGZ4pBPCpQcSWfK", "USER"));
+				urepository.save(
+						new AppUser("admin", "$2a$10$LSyGuLy6/w8VVbGlTtQ7ne4igDgReUXwEf2ZtvTmFKdJNiaQYfd/O", "ADMIN"));
+			}
+			
 			//pRepository.save(new Project("Project A", LocalDate.of(2024, 10, 5), LocalDate.of(2025, 04, 30)));
         	//pRepository.save(new Project("Project H", LocalDate.of(2023, 11, 27), LocalDate.of(2024, 9, 17)));
         	//pRepository.save(new Project("Project M", LocalDate.of(2025, 3, 16), LocalDate.of(2025, 6, 5)));

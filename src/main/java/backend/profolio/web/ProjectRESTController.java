@@ -81,21 +81,21 @@ public class ProjectRESTController {
     @GetMapping("/projects/name/{projectName}")
     List<Project> getProjectByName(@PathVariable String projectName) {
         log.info("find projects = " + projectName);
-        return prepository.findByProjectName(projectName);
+        return prepository.findByProjectNameIgnoreCase(projectName);
     }
 
     // find projects by status
     @GetMapping("/projects/status/{statusName}")
     List<Project> getProjectsByStatus(@PathVariable String statusName) {
         log.info("find projects, status = " + statusName);
-        return prepository.findByStatus_StatusName(statusName);
+        return prepository.findByStatus_StatusNameIgnoreCase(statusName);
     }
 
     // find projects by type
     @GetMapping("/projects/type/{typeName}")
     List<Project> getProjectsByType(@PathVariable String typeName) {
         log.info("find projects, types = " + typeName);
-        return prepository.findByTypes_TypeName(typeName);
+        return prepository.findByTypes_TypeNameIgnoreCase(typeName);
     }
 
 }

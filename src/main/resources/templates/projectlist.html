@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html 
+
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>ProFolio</title>
@@ -13,12 +16,19 @@
     <div class="navbar">
       
         <h1>ProFOLIO</h1>
-        <a href="/projects">PROJECTS</a> <!--poista tämä, on turha...-->
-        <a href="/add">Add new project</a> <!--vaihda tähän logout-->
+
+        
+        <a sec:authorize="hasAuthority('ADMIN')"  href="/add">ADD NEW PROJECT</a>
+        <a href="/logout">LOG OUT</a>
 
     </div>
 
     <div class="container">
+
+        <p sec:authorize="isAuthenticated()" class="login-text">
+            You are welcome, <span sec:authentication="name"></span>
+        </p>
+
         
 
 
@@ -51,20 +61,14 @@
 
                     <td><a th:href="@{/edit/{id}(id=${project.id})}"><button class="btn btn-primary">Edit</button></a>
                     </td>
-                    <td><a th:href="@{/delete/{id}(id=${project.id})}"><button
-                                class="btn btn-danger">Delete</button></a>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${project.id})}"><button class="btn btn-danger">Delete</button></a>
                     </td>
 
 
                 </tr>
             </tbody>
         </table>
-
-
-        <!--koska add vain ohjaa lomakkeella, sen voi tehdä vain linkkibuttonina-->
-        <button class="btn btn-primary" onclick="window.location.href='/add'">Add new project</button>
-
-        <button class="btn btn-secondary" onclick="window.location.href='/logout';">Log out</button>
+        
 
     </div>
 </body>
