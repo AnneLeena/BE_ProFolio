@@ -26,11 +26,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <div class="container">
 
         <p sec:authorize="isAuthenticated()" class="login-text">
-            You are welcome, <span sec:authentication="name"></span>
+            Welcome,  <span sec:authentication="name"></span>
         </p>
-
-        
-
 
         <table class="table table-striped">
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import backend.profolio.domain.Project;
 import backend.profolio.domain.ProjectRepository;
@@ -34,6 +35,12 @@ public class ProjectController {
         private TypeRepository trepository;
 
 
+
+    @RequestMapping(value="/login")
+    public String login() {	
+    return "login";
+    }	
+    
     @GetMapping({ "/", "/projectlist" })
     public String projectlist(Model model) {
         model.addAttribute("projects", prepository.findAll());
