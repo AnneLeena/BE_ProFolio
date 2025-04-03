@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>App Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+
+<body>
+
+    <div class="navbar">
+      
+        <h1>ProFOLIO</h1>
+        <a th:href="@{/projectlist}">PROJECTS</a>
+        <a th:href="@{/projectbytypelist}">PROJECTS BY TYPE</a>
+        <a sec:authorize="hasAuthority('ADMIN')"  href="/add">ADD NEW PROJECT</a>
+        <a></a>
+        <a href="/logout">LOG OUT</a>
+
+    </div>
+
+    <div class="container">
+         <h3>App Users</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr th:each="user : ${appUsers}">
+                    <td th:text="${user.id}"></td> 
+                    <td th:text="${user.username}"></td> 
+                    <td th:text="${user.role}"></td> 
+
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${id})}"><button class="btn btn-danger">Delete</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
