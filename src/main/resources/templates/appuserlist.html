@@ -38,7 +38,7 @@
                     <td th:text="${user.username}"></td> 
                     <td th:text="${user.role}"></td> 
 
-                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${id})}"><button class="btn btn-danger">Delete</button></a>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete-user/{id}(id=${user.id})}" method="post" ><button class="btn btn-danger">Delete</button></a>
                     </td>
                 </tr>
             </tbody>

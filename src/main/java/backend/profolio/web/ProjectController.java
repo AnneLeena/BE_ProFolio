@@ -1,7 +1,9 @@
 package backend.profolio.web;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,8 +40,6 @@ public class ProjectController {
         @Autowired
         private TypeRepository trepository;
 
-
-
     @RequestMapping(value="/login")
     public String login() {	
     return "login";
@@ -50,9 +50,6 @@ public class ProjectController {
         model.addAttribute("projects", prepository.findAll());
         return "projectlist";
     }
-
-    
-
 
     @GetMapping("/add")
     public String addProject(Model model) {
@@ -80,20 +77,20 @@ public class ProjectController {
     @GetMapping("/projectbytypelist")
     public String getProjectsByType(Model model) {
     
-        List<Type> types = ((List<Type>) trepository.findAll()); 
-        List<Project> allProjects = new ArrayList<>();
-
+        List<Type> types = new ArrayList<>();
+        trepository.findAll().forEach(types::add); // Muunnetaan Iterable listaksi
+    
+        Set<Project> uniqueProjects = new HashSet<>();
+    
         for (Type type : types) {
-            List<Project> projects = prepository.findByTypes_TypeNameIgnoreCase(type.getTypeName());
-            allProjects.addAll(projects); 
-    }
-
-        model.addAttribute("projects", allProjects);
+            uniqueProjects.addAll(prepository.findByTypes_TypeNameIgnoreCase(type.getTypeName()));
+        }
+    
+        model.addAttribute("projects", new ArrayList<>(uniqueProjects));  
         model.addAttribute("types", types);
-
+    
         return "projectbytypelist";
-}
-
+    }
 
     @GetMapping("/edit/{id}")
     public String editProject(@PathVariable("id") Long projectId, Model model) {

@@ -1,7 +1,5 @@
 package backend.profolio.web;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import backend.profolio.domain.AppUser;
 import backend.profolio.domain.AppUserRepository;
-
 
 /**
  * This class is used by spring security to authenticate and authorize user
@@ -21,7 +18,6 @@ public class UserDetailsServiceImpl implements UserDetailsService  {
 	//@Autowired
 	AppUserRepository repository;
 	
-	// Constructor Injection
 	public UserDetailsServiceImpl(AppUserRepository appUserRepository) {
 		this.repository = appUserRepository; 
 	}

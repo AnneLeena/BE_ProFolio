@@ -21,7 +21,6 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 @SpringBootApplication
 public class ProfolioApplication {
-
     
 	private static final Logger log = LoggerFactory.getLogger(ProfolioApplication.class);
 
@@ -76,7 +75,6 @@ public class ProfolioApplication {
 					prepository.save(new Project("Projekti testi", LocalDate.of(2023, 4, 3), LocalDate.of(2024, 10, 2), status3, type3, type4));
 					prepository.save(new Project("Projekti F", LocalDate.of(2025, 10, 26), LocalDate.of(2027, 8, 30), status1, type2));
 				}
-			
 			}}
 			
 			if (urepository.count() == 0) {
@@ -87,16 +85,10 @@ public class ProfolioApplication {
 						new AppUser("admin", "$2a$10$LSyGuLy6/w8VVbGlTtQ7ne4igDgReUXwEf2ZtvTmFKdJNiaQYfd/O", "ADMIN"));
 			}
 			
-			//pRepository.save(new Project("Project A", LocalDate.of(2024, 10, 5), LocalDate.of(2025, 04, 30)));
-        	//pRepository.save(new Project("Project H", LocalDate.of(2023, 11, 27), LocalDate.of(2024, 9, 17)));
-        	//pRepository.save(new Project("Project M", LocalDate.of(2025, 3, 16), LocalDate.of(2025, 6, 5)));
-
 			log.info("Fetch all projects");
 			for(Project project : prepository.findAll()) {
 				log.info(project.toString());
 			}			
 		};
-	
 	}
-	
 }

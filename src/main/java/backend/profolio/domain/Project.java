@@ -78,8 +78,6 @@ public class Project {
    
     }
 
-    
-
     public Long getId() {
         return id;
     }
@@ -140,14 +138,6 @@ public class Project {
                 + endDate + ", status=" + this.getStatus() + ", types=" + this.getTypes() + "]";
     }
 
-
-
-
-    
-   // @Override
-    //public String toString() {
-      //  return "Project [id=" + id + ", projectName=" + projectName + ", startDate=" + startDate + ", endDate="
-        //        + endDate + ", status=" + this.getStatus() + "]";
     }
 
 

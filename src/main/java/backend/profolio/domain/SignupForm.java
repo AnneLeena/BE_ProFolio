@@ -1,6 +1,7 @@
 package backend.profolio.domain;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 public class SignupForm {
     @NotEmpty
@@ -49,6 +50,5 @@ public class SignupForm {
 	public void setRole(String role) {
 		this.role = role;
 	}
-    
     
 }
