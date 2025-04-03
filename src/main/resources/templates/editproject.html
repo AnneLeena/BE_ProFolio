@@ -61,7 +61,7 @@
             <!-- Oikean sarakkeen kentät: Tyyppivalinnat ja napit -->
             <div class="col-md-6">
                 <div>
-                    <label>Project Types (max 2 choices):</label>
+                    <label>Project Types:</label>
                     <div th:each="type : ${types}">
                         <input type="checkbox" th:field="*{types}" th:value="${type.typeId}"
                             th:text="${type.typeName}" />

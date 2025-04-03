@@ -66,7 +66,7 @@ public class ProfolioApplication {
 					prepository.save(new Project("Projekti 123", LocalDate.of(2023, 4, 3), LocalDate.of(2024, 10, 2), status3, type1, type2));
 					prepository.save(new Project("Projekti A", LocalDate.of(2024, 10, 26), LocalDate.of(2025, 5, 7), status2, type4, type1));
 					prepository.save(new Project("Projekti C", LocalDate.of(2025, 1, 13), LocalDate.of(2026, 7, 31), status4, type2));
-					prepository.save(new Project("Projekti testi", LocalDate.of(2023, 4, 3), LocalDate.of(2024, 10, 2), status3, type3, type1, type4));
+					prepository.save(new Project("Projekti testi", LocalDate.of(2023, 4, 3), LocalDate.of(2024, 10, 2), status3, type3, type4));
 					prepository.save(new Project("Projekti F", LocalDate.of(2025, 10, 26), LocalDate.of(2027, 8, 30), status1, type2));
 				}
 			
