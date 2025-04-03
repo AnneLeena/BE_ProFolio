@@ -16,9 +16,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <div class="navbar">
       
         <h1>ProFOLIO</h1>
-
-        
+        <a></a>
+        <a th:href="@{/projectbytypelist}">PROJECTS BY TYPE</a>
         <a sec:authorize="hasAuthority('ADMIN')"  href="/add">ADD NEW PROJECT</a>
+        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/appuserlist}">USER LIST</a>
         <a href="/logout">LOG OUT</a>
 
     </div>
@@ -26,7 +27,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <div class="container">
 
         <p sec:authorize="isAuthenticated()" class="login-text">
-            Welcome,  <span sec:authentication="name"></span>
+            Welcome,  <span sec:authentication="name"></span>! 
+            <br>Here you can see our projects.
+            <br>You can navigate with links on top.
         </p>
 
         <table class="table table-striped">

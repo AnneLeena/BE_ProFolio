@@ -1,5 +1,8 @@
 package backend.profolio.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import backend.profolio.domain.Project;
 import backend.profolio.domain.ProjectRepository;
 import backend.profolio.domain.StatusRepository;
+import backend.profolio.domain.Type;
 import backend.profolio.domain.TypeRepository;
 import jakarta.validation.Valid;
 
@@ -47,6 +51,9 @@ public class ProjectController {
         return "projectlist";
     }
 
+    
+
+
     @GetMapping("/add")
     public String addProject(Model model) {
         model.addAttribute("project", new Project());
@@ -69,6 +76,24 @@ public class ProjectController {
         repository.save(project);
         return "redirect:/projectlist";
     }
+
+    @GetMapping("/projectbytypelist")
+    public String getProjectsByType(Model model) {
+    
+        List<Type> types = ((List<Type>) trepository.findAll()); 
+        List<Project> allProjects = new ArrayList<>();
+
+        for (Type type : types) {
+            List<Project> projects = prepository.findByTypes_TypeNameIgnoreCase(type.getTypeName());
+            allProjects.addAll(projects); 
+    }
+
+        model.addAttribute("projects", allProjects);
+        model.addAttribute("types", types);
+
+        return "projectbytypelist";
+}
+
 
     @GetMapping("/edit/{id}")
     public String editProject(@PathVariable("id") Long projectId, Model model) {

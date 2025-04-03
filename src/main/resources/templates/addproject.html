@@ -11,8 +11,12 @@
 <body>
 
     <div class="navbar">
+      
         <h1>ProFOLIO</h1>
-        <a href="/">PROJECTS</a> <!--mieti onko tarpeellinen-->
+        <a th:href="@{/projectlist}">PROJECTS</a>
+        <a th:href="@{/projectbytypelist}">PROJECTS BY TYPE</a>
+        <a></a>
+        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/appuserlist}">USER LIST</a>
         <a href="/logout">LOG OUT</a>
 
     </div>
