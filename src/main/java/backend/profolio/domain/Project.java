@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -45,17 +46,19 @@ public class Project {
     //jos json data/rest api käytössä niin tämä tarvitaan @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
+    @NotNull(message = "Status cannot be null")
     @ManyToOne
     @JoinColumn(name = "statusId")
     private Status status;
 
+    @NotNull(message = "Types cannot be null")
     @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(
         name = "projectType", // Taulun nimi, jossa yhdistetään projektit ja tyypit
         joinColumns = @JoinColumn(name = "id"),
         inverseJoinColumns = @JoinColumn(name = "typeId")
     )
-    private Set<Type> types = new HashSet<>(); // Voimme liittää useamman tyypin
+    private Set<Type> types = new HashSet<>(); // useampi tyyppi mahdollista
 
 
     public Project() {

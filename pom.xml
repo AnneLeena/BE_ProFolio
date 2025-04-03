@@ -94,6 +94,12 @@
 			<scope>test</scope>
 		</dependency>
 
+<!--ulkoinen tietokanta postgre-->
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+	</dependency>
+
 		
 
 	</dependencies>
