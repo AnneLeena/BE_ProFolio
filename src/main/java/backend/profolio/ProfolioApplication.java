@@ -17,6 +17,7 @@ import backend.profolio.domain.Status;
 import backend.profolio.domain.StatusRepository;
 import backend.profolio.domain.Type;
 import backend.profolio.domain.TypeRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 
 @SpringBootApplication
 public class ProfolioApplication {
@@ -25,6 +26,12 @@ public class ProfolioApplication {
 	private static final Logger log = LoggerFactory.getLogger(ProfolioApplication.class);
 
     public static void main(String[] args) {
+
+		 // Hakee ympäristömuuttujat .env-tiedostosta
+		 Dotenv dotenv = Dotenv.load();
+		 System.setProperty("DB_USERNAME", dotenv.get("DB_USERNAME"));
+		 System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
+
 		SpringApplication.run(ProfolioApplication.class, args);
 	}
 

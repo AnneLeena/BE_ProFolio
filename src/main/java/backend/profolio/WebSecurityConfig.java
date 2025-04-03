@@ -1,17 +1,16 @@
 package backend.profolio;
 
-//import static method antMatcher
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
@@ -20,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
 	
 	//@Autowired
-	private UserDetailsService userDetailsService; // type of attribute -> interface
+	private UserDetailsService userDetailsService;
 	
 	// Constructor injection
 	public WebSecurityConfig(UserDetailsService userDetailsService) {
@@ -33,14 +32,15 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(authorize -> authorize
 					.requestMatchers(antMatcher("/css/**")).permitAll()
 					.requestMatchers(antMatcher("/h2-console/**")).permitAll()
-					//.requestMatchers(antMatcher("/login")).permitAll()
 					.requestMatchers(antMatcher("/signup")).permitAll()
 					.requestMatchers(antMatcher("/saveuser")).permitAll()
 
 					.anyRequest().authenticated())
 
 			.headers(headers -> headers
-					.frameOptions(frameOptions -> frameOptions.disable())) // for h2console
+					.frameOptions(frameOptions -> frameOptions
+					.disable())) // for h2console
+					.httpBasic(Customizer.withDefaults())
 			
 			.formLogin(formlogin -> formlogin
 					.loginPage("/login")
