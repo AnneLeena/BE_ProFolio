@@ -87,8 +87,14 @@
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
 		</dependency>
 
+<!--testaus-->
+		<dependency>
+ 			<groupId>org.springframework.security</groupId>
+ 			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
-
+		
 
 	</dependencies>
 
