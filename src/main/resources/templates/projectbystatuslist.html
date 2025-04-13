@@ -5,54 +5,51 @@
     <title>ProFolio</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css" th:href="@{css/custom.css}" />
 </head>
 
 <body>
 
     <div class="navbar">
-      
         <h1>ProFOLIO</h1>
         <a th:href="@{/projectlist}">PROJECTS</a>
-        <a th:href="@{/projectbystatuslist}">PROJECTS BY STATUS</a>
         <a></a>
-        <a sec:authorize="hasAuthority('ADMIN')"  href="/add">ADD NEW PROJECT</a>
+        <a th:href="@{/projectbytypelist}">PROJECTS BY TYPE</a>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/add">ADD NEW PROJECT</a>
         <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/appuserlist}">USER LIST</a>
         <a href="/logout">LOG OUT</a>
-
     </div>
 
     <div class="container">
-        
-        <h3>Projects by type</h3>
+        <h3>Projects by status</h3>
 
-        <div th:each="type : ${types}">
-            <h4 th:text="${type.typeName}">Type Name</h4>
+        <div th:each="entry : ${projectsByStatus}">
+            <h4 th:text="${entry.key.statusName}">Status Name</h4>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Project name</th>
                         <th>Start date</th>
                         <th>End date</th>
-                        <th>Status</th>
-                        <th> </th>
-                        <th> </th>
+                        <th>Type(s)</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
-
                 <tbody>
-                    <tr th:each="project : ${projects}" th:if="${project.types.contains(type)}">
-                        <td th:text="${project.projectName}"></td>
-                        <td th:text="${project.startDate}"></td>
-                        <td th:text="${project.endDate}"></td>
-                        <td th:text="${project.status.statusName}"></td>
-
+                    <tr th:each="project : ${entry.value}">
+                        <td th:text="${project.projectName}">Project name</td>
+                        <td th:text="${project.startDate}">Start date</td>
+                        <td th:text="${project.endDate}">End date</td>
+                        <td>
+                            <span th:each="type, iterStat : ${project.types}"
+                                  th:text="${iterStat.index != 0 ? ' | ' : ''} + ${type.typeName}">Type</span>
+                        </td>
                         <td>
                             <a th:href="@{/edit/{id}(id=${project.id})}">
                                 <button class="btn btn-primary">Edit</button>
                             </a>
                         </td>
-                        
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a th:href="@{/delete/{id}(id=${project.id})}">
                                 <button class="btn btn-danger">Delete</button>
@@ -63,6 +60,6 @@
             </table>
         </div>
     </div>
-</body>
 
+</body>
 </html>

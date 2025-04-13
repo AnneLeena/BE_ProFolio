@@ -13,7 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 @Configuration
-@EnableMethodSecurity(securedEnabled = true)
+@EnableMethodSecurity(securedEnabled= true)
+
 
 
 public class WebSecurityConfig {
@@ -33,6 +34,7 @@ public class WebSecurityConfig {
 					.requestMatchers(antMatcher("/h2-console/**")).permitAll()
 					.requestMatchers(antMatcher("/signup")).permitAll()
 					.requestMatchers(antMatcher("/saveuser")).permitAll()
+					.requestMatchers(antMatcher("/add)")).hasRole("ADMIN")
 
 					.anyRequest().authenticated())
 
